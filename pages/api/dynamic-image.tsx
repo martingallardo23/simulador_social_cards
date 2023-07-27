@@ -40,7 +40,7 @@ export default async function handler(req: NextRequest) {
             borderRadius: 128,
           }}
         />
-        <p>github.com/{username}</p>
+        <p>github.com/{username} asd asd a</p>
       </div>
     ),
     {
