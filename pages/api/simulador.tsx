@@ -34,7 +34,7 @@ export default async function handler(req: NextRequest) {
     const round = searchParams.get('round') == 'first' ? 'Primera Vuelta' : 'Ballotage'
     const roundBackground = round == 'Primera Vuelta' ? '#ffe864' : '#e2f1f3'
     const loser = searchParams.has('loser') && round == "Ballotage" ? searchParams.get('loser') : null
-    const loserLink = 'https://simuladorelecciones-2a010e363c38.herokuapp.com/static/img/' + loser + '.jpg'
+    const loserLink = '../../assets/img/' + loser + '.jpg'
 
     // find the party by finding the candidate name in the candidatedata json
     const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
@@ -124,7 +124,7 @@ export default async function handler(req: NextRequest) {
                 <div style={{display:'flex',
                             flexDirection:'column'}}>
                     <div style={{
-                            fontSize: '90px',
+                            fontSize: '100px',
                             lineHeight: 1,
                             whiteSpace: 'pre-wrap',
                             fontFamily: 'Zilla Slab Bold',
@@ -132,7 +132,8 @@ export default async function handler(req: NextRequest) {
                             {winner}
                     </div>
                     <div style={{
-                        fontSize: '45px',
+                        fontSize: '50px',
+                        marginTop:'10px',
                         lineHeight:1,
                         whiteSpace: 'pre-wrap',
                     }}>
