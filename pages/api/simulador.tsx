@@ -1,11 +1,10 @@
 import Image from 'next/image';
-import { ImageResponse } from '@vercel/og';
-import { NextRequest } from 'next/server';
+import { NextRequest, ImageResponse } from 'next/server';
 import candidateData from '../../assets/candidates.json';
 import partyData from '../../assets/parties.json';
 
 export const config = {
-  runtime: 'edge',
+    runtime: 'edge',
 }
 
 export function hexToRgb(hex, opacity) {
@@ -19,32 +18,32 @@ export function capitalizeFirstLetter(string) {
 
 export default async function handler(req: NextRequest) {
     try {
-
+        
         const { searchParams } = new URL(req.url)
         
         const fontDataMedium = await fetch(
             new URL('../../assets/ZillaSlab-Medium.ttf', import.meta.url),
-          ).then((res) => res.arrayBuffer());
-
-          const fontDataBold = await fetch(
+            ).then((res) => res.arrayBuffer());
+            
+            const fontDataBold = await fetch(
             new URL('../../assets/ZillaSlab-Bold.ttf', import.meta.url),
-          ).then((res) => res.arrayBuffer());
-    
-    const winner = searchParams.has('winner') ? capitalizeFirstLetter(searchParams.get('winner')) : null
-    const winnerLink = '../../public/assets/img/' + winner + '.jpg'
-    const round = searchParams.get('round') == 'first' ? 'Primera Vuelta' : 'Ballotage'
-    const roundBackground = round == 'Primera Vuelta' ? '#ffe864' : '#e2f1f3'
-    const loser = searchParams.has('loser') && round == "Ballotage" ? searchParams.get('loser') : null
-    const loserLink = '../../public/assets/img/' + loser + '.jpg'
+            ).then((res) => res.arrayBuffer());
+            
+            const winner = searchParams.has('winner') ? capitalizeFirstLetter(searchParams.get('winner')) : null
+            const winnerLink ='http://https://simulador-elecciones-vercel.vercel.app/assets/img/'+ winner + '.jpg';
+            const round = searchParams.get('round') == 'first' ? 'Primera Vuelta' : 'Ballotage'
+            const roundBackground = round == 'Primera Vuelta' ? '#ffe864' : '#e2f1f3'
+            const loser = searchParams.has('loser') && round == "Ballotage" ? searchParams.get('loser') : null
+            const loserLink ='http://https://simulador-elecciones-vercel.vercel.app/assets/img/'+ loser + '.jpg';
+            
+            // find the party by finding the candidate name in the candidatedata json
+            const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
+            const party = partyData.find((party: any) => party.name == partyShort).name_long
+            const percentage = searchParams.has('percentage') ? searchParams.get('percentage') : null
+            const backgroundColorHEX = partyData.find((party: any) => party.name == partyShort).color
+            //change backgroundColor to rgba
+            const backgroundColor = hexToRgb(backgroundColorHEX, 0.4)
 
-    // find the party by finding the candidate name in the candidatedata json
-    const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
-    const party = partyData.find((party: any) => party.name == partyShort).name_long
-    const percentage = searchParams.has('percentage') ? searchParams.get('percentage') : null
-    const backgroundColorHEX = partyData.find((party: any) => party.name == partyShort).color
-    //change backgroundColor to rgba
-    const backgroundColor = hexToRgb(backgroundColorHEX, 0.4)
-    
 
     return new ImageResponse(
 
@@ -57,7 +56,7 @@ export default async function handler(req: NextRequest) {
             borderRadius:'20px',
             border:'1px solid #333',
             backgroundColor:backgroundColor,
-            padding:'20px',
+            padding:'30px',
             lineHeight:'normal',
         }}>
              
@@ -66,15 +65,20 @@ export default async function handler(req: NextRequest) {
                 width:'38%',
                 flexDirection:'column',
                 justifyContent:'space-between',
+                alignItems:'center'
             }}>
-                
-                <Image src={winnerLink} style={{
-                    width:'300px',
-                    height:'300px',
-                    borderRadius:'20px',
-                    border:'1px solid #333',
-                    backgroundColor:'#fff',
-                }} alt="Winner"  width={300} height={300} unoptimized />
+                <div style={{
+                    width: '400px',
+                    height: '400px',
+                    borderRadius: '20px',
+                    border: '1px solid #333',
+                    display: 'flex',
+                    overflow: 'hidden', // to make borderRadius apply to the image
+                }}>
+                    <img src={winnerLink} alt="Winner"/>
+                </div>
+
+
                 <div style={{
                     marginTop:'10px',
                     display:'flex',

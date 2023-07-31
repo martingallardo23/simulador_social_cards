@@ -11,12 +11,11 @@
   },
   "dependencies": {
     "@vercel/og": "latest",
-    "next": "latest",
-    "next-images": "^1.8.5",
-    "react": "latest",
-    "react-dom": "latest",
-    "sharp": "^0.32.4",
-    "webpack": "^5.88.2"
+    "eslint-config-next": "^13.4.12",
+    "next": "^13.4.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.32.4"
   },
   "devDependencies": {
     "@types/node": "^18.15.5",
