@@ -30,11 +30,11 @@ export default async function handler(req: NextRequest) {
             ).then((res) => res.arrayBuffer());
             
             const winner = searchParams.has('winner') ? capitalizeFirstLetter(searchParams.get('winner')) : null
-            const winnerLink ='https://vercel-og-nextjs-omega-six.vercel.app//assets/img/'+ winner + '.webp';
+            const winnerLink ='https://vercel-og-nextjs-omega-six.vercel.app//assets/img/'+ winner + '.jpg';
             const round = searchParams.get('round') == 'first' ? 'Primera Vuelta' : 'Ballotage'
             const roundBackground = round == 'Primera Vuelta' ? '#ffe864' : '#e2f1f3'
             const loser = searchParams.has('loser') && round == "Ballotage" ? searchParams.get('loser') : null
-            const loserLink ='https://vercel-og-nextjs-omega-six.vercel.app/assets/img/'+ loser + '.webp';
+            const loserLink ='https://vercel-og-nextjs-omega-six.vercel.app/assets/img/'+ loser + '.jpg';
             
             // find the party by finding the candidate name in the candidatedata json
             const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
