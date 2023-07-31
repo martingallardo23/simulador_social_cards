@@ -12,8 +12,11 @@
   "dependencies": {
     "@vercel/og": "latest",
     "next": "latest",
+    "next-images": "^1.8.5",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "sharp": "^0.32.4",
+    "webpack": "^5.88.2"
   },
   "devDependencies": {
     "@types/node": "^18.15.5",

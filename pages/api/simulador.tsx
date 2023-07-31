@@ -1,7 +1,8 @@
-import { ImageResponse } from '@vercel/og'
-import { NextRequest } from 'next/server'
-import candidateData from '../../assets/candidates.json'
-import partyData from '../../assets/parties.json'
+import Image from 'next/image';
+import { ImageResponse } from '@vercel/og';
+import { NextRequest } from 'next/server';
+import candidateData from '../../assets/candidates.json';
+import partyData from '../../assets/parties.json';
 
 export const config = {
   runtime: 'edge',
@@ -30,11 +31,11 @@ export default async function handler(req: NextRequest) {
           ).then((res) => res.arrayBuffer());
     
     const winner = searchParams.has('winner') ? capitalizeFirstLetter(searchParams.get('winner')) : null
-    const winnerLink = 'https://simuladorelecciones-2a010e363c38.herokuapp.com/static/img/' + winner + '.jpg'
+    const winnerLink = '../../public/assets/img/' + winner + '.jpg'
     const round = searchParams.get('round') == 'first' ? 'Primera Vuelta' : 'Ballotage'
     const roundBackground = round == 'Primera Vuelta' ? '#ffe864' : '#e2f1f3'
     const loser = searchParams.has('loser') && round == "Ballotage" ? searchParams.get('loser') : null
-    const loserLink = '../../assets/img/' + loser + '.jpg'
+    const loserLink = '../../public/assets/img/' + loser + '.jpg'
 
     // find the party by finding the candidate name in the candidatedata json
     const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
@@ -59,18 +60,21 @@ export default async function handler(req: NextRequest) {
             padding:'20px',
             lineHeight:'normal',
         }}>
+             
             <div style={{
                 display:'flex',
                 width:'38%',
                 flexDirection:'column',
                 justifyContent:'space-between',
             }}>
-                <img src={winnerLink} style={{
-                    width:'100%',
-                    aspectRatio:'1/1',
+                
+                <Image src={winnerLink} style={{
+                    width:'300px',
+                    height:'300px',
                     borderRadius:'20px',
-                    border:'1px solid #333'
-                }}/>
+                    border:'1px solid #333',
+                    backgroundColor:'#fff',
+                }} alt="Winner"  width={300} height={300} unoptimized />
                 <div style={{
                     marginTop:'10px',
                     display:'flex',
@@ -98,6 +102,7 @@ export default async function handler(req: NextRequest) {
                     }}>
                         {round}
                     </div>
+
                     <div style={{display:'flex'}}>
                     {
                     loser
