@@ -108,7 +108,7 @@ export default async function handler(req: NextRequest) {
                         flexGrow:1,
                         whiteSpace: 'pre-wrap',
                     }}>
-                        {round + "s"}
+                        {round}
                     </div>
 
                      <img src={loserLink} style={{
