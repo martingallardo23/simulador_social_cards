@@ -87,7 +87,40 @@ export default async function handler(req: NextRequest) {
                     justifyContent:'space-between',
                     alignItems:'center'
                 }}>
+                    {
+                    loser
+                    ?
+                    <div style={{display:'flex', width:"100%", flexDirection:"row", padding:"10px"}}>
                     <div style={{
+                        backgroundColor:roundBackground,
+                        marginRight:'0px',
+                        display:'flex',
+                        borderRadius:'20px',
+                        border:'1px solid #333',
+                        padding:'2px 6px',
+                        fontSize: 36,
+                        fontStyle: 'normal',
+                        height:'100px',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        textAlign:'center',
+                        lineHeight: 1.4,
+                        flexGrow:1,
+                        whiteSpace: 'pre-wrap',
+                    }}>
+                        {round + "s"}
+                    </div>
+
+                     <img src={loserLink} style={{
+                        borderRadius:'20px',
+                        border:'1px solid #333',
+                        width:'100px',
+                        marginLeft:'10px',
+                        height:'100px',
+                        }}/>
+                    </div>
+                    :   <div style={{display:'flex', width:"100%", flexDirection:"row", padding:"10px"}}>
+                        <div style={{
                         backgroundColor:roundBackground,
                         marginRight:'0px',
                         display:'flex',
@@ -102,24 +135,13 @@ export default async function handler(req: NextRequest) {
                         justifyContent:'center',
                         textAlign:'center',
                         lineHeight: 1.4,
+                        flexGrow:1,
                         whiteSpace: 'pre-wrap',
-                    }}>
-                        {round}
+                        }}>
+                            {round}
+                        </div>
                     </div>
-
-                    <div style={{display:'flex'}}>
-                    {
-                    loser
-                    ? <img src={loserLink} style={{
-                        borderRadius:'20px',
-                        border:'1px solid #333',
-                        width:'100px',
-                        marginLeft:'10px',
-                        height:'100px',
-                        }}/>
-                    : null
                     }
-                    </div>
                 </div>
             </div>
             <div  style={{

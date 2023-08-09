@@ -2,46 +2,73 @@
     {
         "name": "Bullrich",
         "party": "JxC",
-        "image": "public/img/Bullrich.png"
+        "image": "./static/img/Bullrich.png",
+        "primary_votes": 0
     },
     {
         "name": "Larreta",
         "party": "JxC",
-        "image": "public/img/larreta.png"
+        "image": "./static/img/larreta.png",
+        "primary_votes": 0
     },
     {
         "name": "Massa",
         "party": "UP",
-        "image": "public/img/massa.png"
+        "image": "./static/img/massa.png",
+        "primary_votes": 0
     },
     {
         "name": "Grabois",
         "party": "UP",
-        "image": "public/img/grabois.png"
+        "image": "./static/img/grabois.png",
+        "primary_votes": 0
     },
     {
         "name": "Milei",
         "party": "LLA",
-        "image": "public/img/milei.png"
+        "image": "./static/img/milei.png",
+        "primary_votes": 0
     },
     {
         "name": "Schiaretti",
         "party": "CF",
-        "image": "public/img/grabois.png"
+        "image": "./static/img/grabois.png",
+        "primary_votes": 0
     },
     {
         "name": "Bregman",
         "party": "FIT",
-        "image": "public/img/grabois.png"
+        "image": "./static/img/grabois.png",
+        "primary_votes": 0
     },
     {
         "name": "Solano",
         "party": "FIT",
-        "image": "public/img/grabois.png"
+        "image": "./static/img/grabois.png",
+        "primary_votes": 0
     },
     {
         "name": "Moreno",
         "party": "PyV",
-        "image": "public/img/grabois.png"
-    }   
+        "image": "./static/img/grabois.png",
+        "primary_votes": 0
+    },
+    {
+        "name": "Cuneo",
+        "party": "MIJD",
+        "image": "./static/img/grabois.png",
+        "primary_votes": 0
+    },
+    {
+        "name": "Castañeira",
+        "party": "MAS",
+        "image": "./static/img/castañeira.png",
+        "primary_votes": 0
+    },
+    {
+        "name": "Ramal",
+        "party": "PO",
+        "image": "./static/img/ramal.png",
+        "primary_votes": 0
+    }
 ]
