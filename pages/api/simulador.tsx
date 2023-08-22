@@ -23,27 +23,33 @@ export default async function handler(req: NextRequest) {
         
         const fontDataMedium = await fetch(
             new URL('../../assets/ZillaSlab-Medium.ttf', import.meta.url),
-            ).then((res) => res.arrayBuffer());
+            ).then((res) => res.arrayBuffer()
+        );
             
-            const fontDataBold = await fetch(
+        const fontDataBold = await fetch(
             new URL('../../assets/ZillaSlab-Bold.ttf', import.meta.url),
-            ).then((res) => res.arrayBuffer());
-            
-            const winner = searchParams.has('winner') ? capitalizeFirstLetter(searchParams.get('winner')) : null
-            const winnerLink ='https://vercel-og-nextjs-omega-six.vercel.app//assets/img/'+ winner + '.jpg';
-            const round = searchParams.get('round') == 'first' ? 'Primera Vuelta' : 'Ballotage'
-            const roundBackground = round == 'Primera Vuelta' ? '#ffe864' : '#e2f1f3'
-            const loser = searchParams.has('loser') && round == "Ballotage" ? searchParams.get('loser') : null
-            const loserLink ='https://vercel-og-nextjs-omega-six.vercel.app/assets/img/'+ loser + '.jpg';
-            
-            // find the party by finding the candidate name in the candidatedata json
-            const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
-            const party = partyData.find((party: any) => party.name == partyShort).name_long
-            const percentage = searchParams.has('percentage') ? searchParams.get('percentage') : null
-            const backgroundColorHEX = partyData.find((party: any) => party.name == partyShort).color
-            //change backgroundColor to rgba
-            const backgroundColor = hexToRgb(backgroundColorHEX, 0.4)
+            ).then((res) => res.arrayBuffer()
+        );
 
+        const IMAGE_BASE_URL = 'https://vercel-og-nextjs-omega-six.vercel.app/assets/img/';
+
+        const rawWinner = searchParams.get('winner');
+        const rawLoser = searchParams.get('loser');
+        const rawRound = searchParams.get('round');
+        const percentage = searchParams.get('percentage');        
+
+        const winner = rawWinner ? capitalizeFirstLetter(rawWinner) : null;
+        const loser = (rawLoser && rawRound === "Ballotage") ? rawLoser : null;
+        const round = rawRound === 'first' ? 'Primera Vuelta' : 'Ballotage';
+        
+        const winnerLink = `${IMAGE_BASE_URL}${winner}.jpg`;
+        const loserLink = `${IMAGE_BASE_URL}${loser}.jpg`;
+        const roundBackground = round == 'Primera Vuelta' ? '#ffe864' : '#e2f1f3'
+        
+        const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
+        const party = partyData.find((party: any) => party.name == partyShort).name_long
+        const backgroundColorHEX = partyData.find((party: any) => party.name == partyShort).color
+        const backgroundColor = hexToRgb(backgroundColorHEX, 0.4)
 
     return new ImageResponse(
 
@@ -73,7 +79,7 @@ export default async function handler(req: NextRequest) {
                     borderRadius: '20px',
                     border: '1px solid #333',
                     display: 'flex',
-                    overflow: 'hidden', // to make borderRadius apply to the image
+                    overflow: 'hidden', 
                 }}>
                     <img src={winnerLink} alt="Winner"/>
                 </div>
