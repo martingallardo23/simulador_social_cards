@@ -6,17 +6,17 @@ It is used to dynamically create social cards for the simulator, displaying the 
 
 It takes four URL parameters:
 
-- `winner:` The name of the predicted winner of the election
+- `winner:` the name of the predicted next president
 - `election:` either `first` or `second`, representing whether the election was resolved in the first or second round
-- `loser:` The name of the runner-up, can be empty if the election was resolved in the first round
-- `percentage:` The percentage of votes the winner got
+- `loser:` the name of the runner-up, can be empty if the election was decided in the first round
+- `percentage:` the winner's percentage in the last election
 
-Example:
+For example:
 
 ```
 https://vercel-og-nextjs-omega-six.vercel.app/api/simulador?winner=Schiaretti&round=first&loser=None&percentage=100
 ```
 
-Produces:
+produces
 
 ![](https://vercel-og-nextjs-omega-six.vercel.app/api/simulador?winner=Schiaretti&round=first&loser=None&percentage=100)
