@@ -14,9 +14,9 @@ It takes four URL parameters:
 Example:
 
 ```
-https://vercel-og-nextjs-omega-six.vercel.app/api/simulador?winner=Bregman&round=first&loser=None&percentage=100
+https://vercel-og-nextjs-omega-six.vercel.app/api/simulador?winner=Schiaretti&round=first&loser=None&percentage=100
 ```
 
 Produces:
 
-![](https://vercel-og-nextjs-omega-six.vercel.app/api/simulador?winner=Bregman&round=first&loser=None&percentage=100)
+![](https://vercel-og-nextjs-omega-six.vercel.app/api/simulador?winner=Schiaretti&round=first&loser=None&percentage=100)
