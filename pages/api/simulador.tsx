@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { NextRequest, ImageResponse } from 'next/server';
 import candidateData from '../../assets/candidates.json';
 import partyData from '../../assets/parties.json';
@@ -7,10 +6,29 @@ export const config = {
     runtime: 'edge',
 }
 
-export function hexToRgb(hex, opacity) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? `rgba(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}, ${opacity})` : null;
+export function mixWithWhite(hex: string, factor: number): string {
+    // Ensure factor is between 0 (color unchanged) and 1 (white)
+    factor = Math.max(0, Math.min(1, factor));
+
+    // Parse the hex color
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!result) {
+        return null;
+    }
+
+    // Extract RGB values
+    const r = parseInt(result[1], 16);
+    const g = parseInt(result[2], 16);
+    const b = parseInt(result[3], 16);
+
+    // Mix with white
+    const mixedR = Math.round(r + (255 - r) * factor);
+    const mixedG = Math.round(g + (255 - g) * factor);
+    const mixedB = Math.round(b + (255 - b) * factor);
+
+    return `rgb(${mixedR}, ${mixedG}, ${mixedB})`;
 }
+
 
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -49,7 +67,7 @@ export default async function handler(req: NextRequest) {
         const partyShort = candidateData.find((candidate: any) => candidate.name == winner).party
         const party = partyData.find((party: any) => party.name == partyShort).name_long
         const backgroundColorHEX = partyData.find((party: any) => party.name == partyShort).color
-        const backgroundColor = hexToRgb(backgroundColorHEX, 0.4)
+        const backgroundColor = mixWithWhite(backgroundColorHEX, 0.5)
 
     return new ImageResponse(
 
