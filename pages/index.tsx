@@ -4,8 +4,8 @@ export default function Page() {
   return (
     <div>
       <Head>
-        <meta name="og:title" content="Vercel Edge Network" />
-        <meta name="og:description" content="Vercel Edge Network" />
+        <meta name="og:title" content="Dynamic Social Card Generator" />
+        <meta name="og:description" content="Dynamic Social Card Generator" />
         <meta
           name="og:image"
           content={
@@ -19,7 +19,7 @@ export default function Page() {
           }
         />
       </Head>
-      <h1>A page with Open Graph Image.</h1>
+      <h1>Dynamic Social Card Generator</h1>
     </div>
   )
 }
